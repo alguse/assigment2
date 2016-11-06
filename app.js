@@ -1,6 +1,6 @@
   (function () {
   'use strict';
-  var m = [{name: "Cookie", quantity: "10"},{name: "Tea", quantity: "1"},{name: "Ramen", quantity: "12"}];
+  var m = [{name: "Cookie", quantity: "10"},{name: "Tea", quantity: "1"},{name: "Ramen", quantity: "12"},{name: "Apples", quantity: "20"},{name: "Fried Fish", quantity: "8"}];
   var m2 = [];
   angular.module('ShoppingListApp', [])
   .controller('ShoppingListController1',ShoppingListController1)
