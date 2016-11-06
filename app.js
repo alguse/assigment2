@@ -14,26 +14,23 @@ function ShoppingListController1(ShoppingListService) {
   var list = this;
   list.shoppingList1 = m;
   list.removeItem = function (itemIndex, item){
-
-    try{
       ShoppingListService.removeItem(itemIndex);
-    }catch(error){
-      list.errorMessage= error.message;
-    }
-
-    try{
       ShoppingListService.boughtItem(item);
-    }catch(error){
-      ShoppingListController2.errorMessage= error.message;
-    }
   };
+
+  list.getItemstoBuy = function(){
+    return ShoppingListService.getItemstoBuy();
+  }
 }
 // LIST #2 - controller
 ShoppingListController2.$inject = ['ShoppingListService'];
 function ShoppingListController2(ShoppingListService) {
   var list2 = this;
   list2.shoppingList2 = m2;
-  list2.errorMessage = "Nothing bought yet!";
+  list2.getItemsBought = function(){
+    return ShoppingListService.getItemsBought();
+  }
+
 }
 
 // If not specified, maxItems assumed unlimited
@@ -46,22 +43,19 @@ function ShoppingListService() {
 
     service.boughtItem = function (item) {
       m2.push(item);
-      if(m2.length<=0){
-        throw new Error("Nothing bought yet.");
-      }else{
-        throw new Error("");
-      }
     };
 
   service.removeItem = function (itemIndex) {
     m.splice(itemIndex, 1);
-    if(m.length<1){
-      throw new Error("Everything is bought!");
-    }
   };
 
-  service.getItems = function () {
-    return items;
+  service.getItemstoBuy = function () {
+    console.log(m.length);
+    return m.length;
+  };
+
+  service.getItemsBought = function () {
+    return m2.length;
   };
 }
 
