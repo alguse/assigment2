@@ -1,14 +1,27 @@
   (function () {
   'use strict';
+  /**
+   * Arrays used in lists
+   */
+
   var m = [{name: "Cookie", quantity: "10"},{name: "Tea", quantity: "1"},{name: "Ramen", quantity: "12"},{name: "Apples", quantity: "20"},{name: "Fried Fish", quantity: "8"}];
   var m2 = [];
+  /**
+   * Initial configuration and declare of module, provider and controllers
+   * Created by Sergio Albarran
+   * Last modified: November 3 2016
+   */
+
   angular.module('ShoppingListApp', [])
   .controller('ShoppingListController1',ShoppingListController1)
   .provider('ShoppingListService', ShoppingListServiceProvider)
-  .controller('ShoppingListController2', ShoppingListController2);
+  .controller('ShoppingListController2', ShoppingListController2);ter
 
-
-// LIST #1 - controller
+  /**
+   * Controller 1: Controller for the first list
+   * Created by Sergio Albarran
+   * Last modified: November 3 2016
+   */
 ShoppingListController1.$inject = ['ShoppingListService'];
 function ShoppingListController1(ShoppingListService) {
   var list = this;
@@ -22,7 +35,12 @@ function ShoppingListController1(ShoppingListService) {
     return ShoppingListService.getItemstoBuy();
   }
 }
-// LIST #2 - controller
+
+/**
+ * Controller 2: Controller for the second list
+ * Created by Sergio Albarran
+ * Last modified: November 3 2016
+ */
 ShoppingListController2.$inject = ['ShoppingListService'];
 function ShoppingListController2(ShoppingListService) {
   var list2 = this;
@@ -33,7 +51,12 @@ function ShoppingListController2(ShoppingListService) {
 
 }
 
-// If not specified, maxItems assumed unlimited
+/**
+ * Service for the removing and moving items in lists
+ * Returns also how many items we have in both lists
+ * Created by Sergio Albarran
+ * Last modified: November 3 2016
+ */
 function ShoppingListService() {
   var service = this;
 
@@ -65,6 +88,12 @@ function ShoppingListServiceProvider() {
   provider.defaults = {
     maxItems: 10
   };
+
+  /**
+   * Provider
+   * Created by Sergio Albarran
+   * Last modified: November 3 2016
+   */
 
   provider.$get = function () {
     var shoppingList = new ShoppingListService(provider.defaults.maxItems);
